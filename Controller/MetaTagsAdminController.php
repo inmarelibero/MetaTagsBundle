@@ -5,7 +5,6 @@ namespace Copiaincolla\MetaTagsBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Copiaincolla\MetaTagsBundle\Entity\Metatag;
 
@@ -18,7 +17,6 @@ class MetaTagsAdminController extends Controller
 {
     /**
      * @Route("/", name="admin_metatag")
-     * @Template("CopiaincollaMetaTagsBundle:MetaTagsAdmin:index/index.html.twig")
      */
     public function indexAction()
     {
@@ -78,9 +76,9 @@ class MetaTagsAdminController extends Controller
 
         ksort($output);
 
-        return array(
+        return $this->render("CopiaincollaMetaTagsBundle:MetaTagsAdmin:index/index.html.twig", array(
             'items' => $output
-        );
+        ));
     }
 
     /**
@@ -99,17 +97,16 @@ class MetaTagsAdminController extends Controller
             throw $this->createNotFoundException('Unable to find Metatag entity.');
         }
 
-        return array(
+        return $this->render("CopiaincollaMetaTagsBundle:MetaTagsAdmin:edit.html.twig", array(
             'entity' => $entity,
             'associated_route' => $this->container->get('ci_metatags.route_exposer')->getRouteByUrl($entity->getUrl())
-        );
+        ));
     }
 
     /**
      * Displays a form to create a new MetaTag entity.
      *
      * @Route("/new", name="admin_metatag_new")
-     * @Template("CopiaincollaMetaTagsBundle:MetaTagsAdmin:edit.html.twig")
      */
     public function newAction()
     {
@@ -120,11 +117,11 @@ class MetaTagsAdminController extends Controller
 
         $form = $this->createForm($this->container->get('ci_metatags.metatag_formtype'), $entity);
 
-        return array(
+        return $this->render("CopiaincollaMetaTagsBundle:MetaTagsAdmin:edit.html.twig", array(
             'entity' => $entity,
             'associated_route' => $this->container->get('ci_metatags.route_exposer')->getRouteByUrl($url),
             'form' => $form->createView()
-        );
+        ));
     }
 
     /**
@@ -132,7 +129,6 @@ class MetaTagsAdminController extends Controller
      *
      * @Route("/create", name="admin_metatag_create")
      * @Method("post")
-     * @Template("CopiaincollaMetaTagsBundle:MetaTagsAdmin:edit.html.twig")
      */
     public function createAction()
     {
@@ -153,17 +149,16 @@ class MetaTagsAdminController extends Controller
             return $this->redirect($this->generateUrl('admin_metatag_edit', array('id' => $entity->getId())));
         }
 
-        return array(
+        return $this->render("CopiaincollaMetaTagsBundle:MetaTagsAdmin:edit.html.twig", array(
             'entity' => $entity,
             'form' => $form->createView()
-        );
+        ));
     }
 
     /**
      * Displays a form to edit an existing Metatag entity.
      *
      * @Route("/{id}/edit", name="admin_metatag_edit")
-     * @Template()
      */
     public function editAction($id)
     {
@@ -179,12 +174,12 @@ class MetaTagsAdminController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return $this->render("CopiaincollaMetaTagsBundle:MetaTagsAdmin:edit.html.twig", array(
             'entity' => $entity,
             'associated_route' => $this->container->get('ci_metatags.route_exposer')->getRouteByUrl($entity->getUrl()),
             'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ));
     }
 
     /**
@@ -192,7 +187,6 @@ class MetaTagsAdminController extends Controller
      *
      * @Route("/{id}/update", name="admin_metatag_update")
      * @Method("post")
-     * @Template("CopiaincollaMetaTagsBundle:MetaTagsAdmin:edit.html.twig")
      */
     public function updateAction($id)
     {
@@ -218,11 +212,11 @@ class MetaTagsAdminController extends Controller
             return $this->redirect($this->generateUrl('admin_metatag_edit', array('id' => $id)));
         }
 
-        return array(
+        return $this->render("CopiaincollaMetaTagsBundle:MetaTagsAdmin:edit.html.twig", array(
             'entity' => $entity,
             'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ));
     }
 
     /**

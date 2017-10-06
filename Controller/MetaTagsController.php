@@ -16,8 +16,6 @@ class MetaTagsController extends Controller
      *
      * @param $vars array of template variables
      * @param $inlineMetatags array of override metatags
-     *
-     * @Template()
      */
     public function renderAction($vars = array(), $inlineMetatags = array())
     {
@@ -25,10 +23,10 @@ class MetaTagsController extends Controller
 
         $request = Request::createFromGlobals();
 
-        return array (
+        return $this->render("CopiaincollaMetaTagsBundle:MetaTags:render.html.twig", array(
             'metatags'  => $metatagsLoader->getMetaTagsForRequest($request, $inlineMetatags),
             'vars'      => $vars
-        );
+        ));
     }
 
 }
