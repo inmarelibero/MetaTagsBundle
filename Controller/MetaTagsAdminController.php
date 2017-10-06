@@ -85,7 +85,6 @@ class MetaTagsAdminController extends Controller
      * Displays information about a MetaTag entity.
      *
      * @Route("/show/{id}", name="admin_metatag_show")
-     * @Template()
      */
     public function showAction($id)
     {
@@ -97,7 +96,7 @@ class MetaTagsAdminController extends Controller
             throw $this->createNotFoundException('Unable to find Metatag entity.');
         }
 
-        return $this->render("CopiaincollaMetaTagsBundle:MetaTagsAdmin:edit.html.twig", array(
+        return $this->render("CopiaincollaMetaTagsBundle:MetaTagsAdmin:show.html.twig", array(
             'entity' => $entity,
             'associated_route' => $this->container->get('ci_metatags.route_exposer')->getRouteByUrl($entity->getUrl())
         ));
@@ -222,8 +221,6 @@ class MetaTagsAdminController extends Controller
     /**
      * Display a form to delete a MetaTag entity
      *
-     * @Template()
-     *
      * @param $id
      * @return array
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
@@ -240,10 +237,10 @@ class MetaTagsAdminController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return $this->render("CopiaincollaMetaTagsBundle:MetaTagsAdmin:_deleteForm.html.twig", array(
             'entity' => $entity,
             'delete_form' => $deleteForm->createView()
-        );
+        ));
     }
 
     /**

@@ -148,8 +148,6 @@ class MetaTagsAdminDefaultsController extends Controller
     /**
      * Display a form to delete a MetaTag Defaults entity
      *
-     * @Template()
-     *
      * @param $id
      * @return array
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
@@ -166,10 +164,10 @@ class MetaTagsAdminDefaultsController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return $this->render("CopiaincollaMetaTagsBundle:MetaTagsAdminDefaults:_deleteForm.html.twig", array(
             'entity' => $entity,
             'delete_form' => $deleteForm->createView()
-        );
+        ));
     }
 
     /**
