@@ -2,7 +2,7 @@
     "name": "inmarelibero/metatags-bundle",
     "description": "HTML Meta Tags management.",
     "keywords": ["meta", "tag", "metatag", "html"],
-    "homepage": "https://github.com/copiaincolla/MetaTagsBundle",
+    "homepage": "https://github.com/inmarelibero/MetaTagsBundle",
     "type": "symfony-bundle",
     "license": "MIT",
     "repositories":[
@@ -17,11 +17,6 @@
             "name": "Emanuele Gaspari Castelletti",
             "email": "inmarelibero@gmail.com",
             "homepage": "https://twitter.com/inmarelibero"
-        },
-        {
-            "name": "Jury D'Ambros",
-            "email": "jurydambros@gmail.com",
-            "homepage": "https://twitter.com/juryDam"
         }
     ],
     "require": {
