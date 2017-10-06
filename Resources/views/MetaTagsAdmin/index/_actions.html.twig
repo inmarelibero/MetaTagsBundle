@@ -11,7 +11,7 @@
 
 {# delete button #}
 {% if entity %}
-    {% render controller('CopiaincollaMetaTagsBundle:MetaTagsAdmin:_deleteForm', {id: entity.id}) %}
+    {{ render(controller('CopiaincollaMetaTagsBundle:MetaTagsAdmin:_deleteForm', {id: entity.id})) }}
 {% endif %}
 
 {# show button #}
